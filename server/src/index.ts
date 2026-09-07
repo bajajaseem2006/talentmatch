@@ -1,4 +1,4 @@
-import express from 'express'; import cors from 'cors'; import dotenv from 'dotenv'; import jwt from 'jsonwebtoken'; import bcrypt from 'bcryptjs'; import { PrismaClient } from '@prisma/client'; import { body, validationResult } from 'express-validator';
+import express from 'express'; import cors from 'cors'; import dotenv from 'dotenv'; import jwt from 'jsonwebtoken'; import bcrypt from 'bcryptjs'; import { PrismaClient } from '../../node_modules/@prisma/client'; import { body, validationResult } from 'express-validator';
 dotenv.config(); const prisma=new PrismaClient(); const app=express(); const port=Number(process.env.PORT||4000); const secret=process.env.JWT_SECRET||'dev-secret';
 app.use(cors({origin:process.env.CLIENT_URL?.split(',')||true})); app.use(express.json());
 const ok=(res:any,data:any,status=200)=>res.status(status).json({success:true,data}); const fail=(res:any,message:string,status=400)=>res.status(status).json({success:false,message});
